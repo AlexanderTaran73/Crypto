@@ -17,15 +17,15 @@ public class Roi {
         return times;
     }
 
-    public void setTimes(String times) {
-        this.times = Double.valueOf(times);
+    public void setTimes(Double times) {
+        this.times = times;
     }
 
     public Double getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(String percentage) {
-        this.percentage = Double.valueOf(percentage);
+    public void setPercentage(Double percentage) {
+        this.percentage = percentage;
     }
 }

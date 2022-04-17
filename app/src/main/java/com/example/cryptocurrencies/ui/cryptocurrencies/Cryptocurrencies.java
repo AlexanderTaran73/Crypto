@@ -16,9 +16,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.cryptocurrencies.ActivityCalculator;
 import com.example.cryptocurrencies.CryptoCustomAdapter;
+import com.example.cryptocurrencies.CryptoOnFetchDataListener;
+import com.example.cryptocurrencies.CryptoRequestManager;
 import com.example.cryptocurrencies.CryptoSelectListener;
 import com.example.cryptocurrencies.Models.CryptoHeadlines;
 import com.example.cryptocurrencies.R;
@@ -53,7 +56,28 @@ public class Cryptocurrencies extends Fragment implements CryptoSelectListener {
         View.OnClickListener listener = view -> startActivity(new Intent(getActivity(), ActivityCalculator.class));
         Calculator_btn.setOnClickListener(listener);
 
+        CryptoRequestManager manager = new CryptoRequestManager(getActivity());
+        manager.getCryptoHeadlines(crypto_listener, "usd", "", "market_cap_desc", 100, "1h,24h,7d");
+
     }
+
+    private final CryptoOnFetchDataListener crypto_listener = new CryptoOnFetchDataListener() {
+        @Override
+        public void onFetchData(List<CryptoHeadlines> list, String message) {
+            if (list.isEmpty()){
+                Toast.makeText(getActivity(), "No data found!!!", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                showCrypto(list);
+            }
+        }
+
+        @Override
+        public void onError(String message) {
+            Toast.makeText(getActivity(), "An Error Occured!!!", Toast.LENGTH_SHORT).show();
+
+        }
+    };
 
     private void showCrypto(List<CryptoHeadlines> list){
         Context context = getActivity();

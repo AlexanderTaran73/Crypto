@@ -23,12 +23,12 @@ public class NewsRequestManager {
     Context context;
 
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://api.github.com")
+            .baseUrl("https://newsapi.org/v2/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
 
-    public  void getNewsHeadlines(OnFetchDataListener listener, String category, String query)
+    public void getNewsHeadlines(NewsOnFetchDataListener listener, String category, String query)
     {
         CallNewsApi callNewsApi = retrofit.create(CallNewsApi.class);
         Call<NewsApiResponse> call = callNewsApi.callHeadlines("us", category, query, context.getString(R.string.apy_key));
@@ -62,7 +62,7 @@ public class NewsRequestManager {
     }
 
     public interface CallNewsApi{
-        @GET("https://newsapi.org/v2/top-headlines?country=us&apiKey=ece567713426455486aeb1bb9c65f488")
+        @GET("top-headlines")
         Call<NewsApiResponse> callHeadlines(
                 @Query("country") String country,
                 @Query("category") String category,

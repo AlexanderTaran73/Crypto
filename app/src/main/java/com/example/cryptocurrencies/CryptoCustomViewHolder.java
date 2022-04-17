@@ -20,7 +20,7 @@ public class CryptoCustomViewHolder extends RecyclerView.ViewHolder {
         symbol = itemView.findViewById(R.id.cryptocurrencies_symbol);
         price = itemView.findViewById(R.id.cryptocurrencies_price);
         price_change_percentage = itemView.findViewById(R.id.cryptocurrencies_price_change_percentage);
-        total_volume = itemView.findViewById(R.id.cryptocurrencies_total_volume);
+
         cardView = itemView.findViewById(R.id.cryptocurrencies_container);
     }
 }

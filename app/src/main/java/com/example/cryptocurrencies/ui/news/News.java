@@ -20,14 +20,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.cryptocurrencies.MainActivity;
 import com.example.cryptocurrencies.NewsCustomAdapter;
 import com.example.cryptocurrencies.Models.NewsApiResponse;
 import com.example.cryptocurrencies.Models.NewsHeadlines;
 import com.example.cryptocurrencies.NewsDetailsActivity;
 import com.example.cryptocurrencies.NewsRequestManager;
 import com.example.cryptocurrencies.NewsSelectListener;
-import com.example.cryptocurrencies.OnFetchDataListener;
+import com.example.cryptocurrencies.NewsOnFetchDataListener;
 import com.example.cryptocurrencies.R;
 
 import java.util.List;
@@ -101,7 +100,7 @@ public class News extends Fragment implements NewsSelectListener, View.OnClickLi
 
     }
 
-    private final OnFetchDataListener<NewsApiResponse> listener = new OnFetchDataListener<NewsApiResponse>() {
+    private final NewsOnFetchDataListener<NewsApiResponse> listener = new NewsOnFetchDataListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
             if (list.isEmpty()){
