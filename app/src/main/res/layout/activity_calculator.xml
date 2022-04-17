@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityCalculator">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Calculator PNL"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="#14142B"
+            android:gravity="center_vertical"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entry price"
+                android:textColor="#14142B"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"/>
+
+            <EditText
+                android:id="@+id/edittext_entry_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="0"
+                android:layout_margin="5dp"
+                android:inputType="numberDecimal"
+                android:textSize="14dp"
+
+                android:padding="10dp"
+                android:background="@drawable/custom_input"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exit price"
+                android:textColor="#14142B"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"/>
+
+            <EditText
+                android:id="@+id/edittext_exit_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="0"
+                android:layout_margin="5dp"
+                android:inputType="numberDecimal"
+                android:textSize="14dp"
+
+                android:padding="10dp"
+                android:background="@drawable/custom_input"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount"
+                android:textColor="#14142B"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"/>
+
+            <EditText
+                android:id="@+id/edittext_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="0"
+                android:layout_margin="5dp"
+                android:inputType="numberDecimal"
+                android:textSize="14dp"
+
+                android:padding="10dp"
+                android:background="@drawable/custom_input"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/custom_input"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PNL"
+                android:textColor="#14142B"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"/>
+
+            <TextView
+                android:id="@+id/textview_PNL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_margin="5dp"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+
+                android:padding="6dp"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="5dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ROE"
+                android:textColor="#14142B"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                />
+
+            <TextView
+                android:id="@+id/textview_ROE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_margin="5dp"
+                android:textSize="15dp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+
+                android:padding="6dp"
+
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="20dp">
+
+            <Button
+                android:id="@+id/calculat_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded"
+                android:backgroundTint="#ff9933"
+                android:paddingStart="60dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="60dp"
+                android:layout_margin="10dp"
+                android:paddingBottom="10dp"
+                android:text="Calculate"
+                android:elevation="5dp"
+                android:stateListAnimator="@null"
+                android:translationZ="5dp"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
