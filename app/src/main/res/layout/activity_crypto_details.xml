@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CryptoDetailsActivity"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp">
+            <ImageView
+                android:id="@+id/details_cryptocurrencies_img"
+                android:src="@drawable/nopicture_availableicon1"
+                android:scaleType="centerCrop"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <TextView
+
+                    android:id="@+id/details_cryptocurrencies_symbol"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:autoSizeTextType="uniform"
+                    android:textStyle="bold"
+                    android:textColor="#14142B"
+                    android:paddingTop="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_weight="2"/>
+
+                <TextView
+                    android:id="@+id/details_cryptocurrencies_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:autoSizeTextType="uniform"
+                    android:textColor="#14142B"
+                    android:paddingTop="3dp"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/crypto_linechart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_margin="15dp"
+        android:weightSum="7">
+        <TextView
+            android:text="Data for 7 days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#14142B"
+            android:textStyle="bold"
+            android:layout_weight="5"
+            />
+        <androidx.appcompat.widget.SwitchCompat
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:id="@+id/crypto_switch"
+            />
+
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_margin="15dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:weightSum="6">
+
+                <TextView
+                    android:text="Price"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:maxLines="1"
+                    android:layout_margin="8dp"
+                    android:textSize="25sp"
+                    android:textColor="#14142B"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:text="Change"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:maxLines="1"
+                    android:layout_margin="8dp"
+                    android:textSize="20sp"
+                    android:textColor="#14142B"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:text="Max 24h"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:maxLines="1"
+                    android:layout_margin="8dp"
+                    android:textSize="20sp"
+                    android:textColor="#14142B"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:text="Min 24h"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:maxLines="1"
+                    android:layout_margin="8dp"
+                    android:textSize="20sp"
+                    android:textColor="#14142B"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/volume_24h_txt"
+                    android:text="Volume 24h"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:maxLines="1"
+                    android:layout_margin="8dp"
+                    android:textSize="18sp"
+                    android:textColor="#14142B"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:text="Volume 24h(USD)"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:maxLines="1"
+                    android:layout_margin="8dp"
+                    android:textSize="18sp"
+                    android:textColor="#14142B"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:background="#C5C5C5"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:weightSum="6">
+                            <TextView
+                                android:id="@+id/price"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:maxLines="1"
+                                android:layout_margin="8dp"
+                                android:autoSizeTextType="uniform"
+                                android:textColor="#14142B"
+                                android:textStyle="bold"
+                                android:layout_weight="1"/>
+                            <TextView
+                                android:id="@+id/change_24h"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:maxLines="1"
+                                android:layout_margin="8dp"
+                                android:autoSizeTextType="uniform"
+                                android:textColor="#14142B"
+                                android:textStyle="bold"
+                                android:layout_weight="1"/>
+                            <TextView
+                                android:text="0"
+                                android:id="@+id/max_24h"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:maxLines="1"
+                                android:layout_margin="8dp"
+                                android:autoSizeTextType="uniform"
+                                android:textColor="#14142B"
+                                android:textStyle="bold"
+                                android:layout_weight="1"/>
+                            <TextView
+                                android:text="0"
+                                android:id="@+id/min_24h"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:maxLines="1"
+                                android:layout_margin="8dp"
+                                android:autoSizeTextType="uniform"
+                                android:textColor="#14142B"
+                                android:textStyle="bold"
+                                android:layout_weight="1"/>
+                            <TextView
+                                android:id="@+id/volume_24h"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:maxLines="1"
+                                android:layout_margin="8dp"
+                                android:autoSizeTextType="uniform"
+                                android:textColor="#14142B"
+                                android:textStyle="bold"
+                                android:layout_weight="1"/>
+                            <TextView
+                                android:text="0"
+                                android:id="@+id/volume_24h_USD"
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:maxLines="1"
+                                android:layout_margin="8dp"
+                                android:autoSizeTextType="uniform"
+                                android:textColor="#14142B"
+                                android:textStyle="bold"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
+
+
+        </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="30dp"
+                android:layout_marginBottom="60dp">
+
+                <Button
+                    android:id="@+id/crypto_add_to_favorites_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded"
+                    android:backgroundTint="#ff9933"
+                    android:paddingStart="60dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="60dp"
+                    android:layout_margin="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Add to favorites"
+                    android:elevation="5dp"
+                    android:stateListAnimator="@null"
+                    android:translationZ="5dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
+    <RelativeLayout
+        android:id="@+id/calculator_btn_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-100dp">
+
+        <ImageButton
+            android:id="@+id/crypto_calculator_btn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/calculator"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/oval_button"
+            android:padding="15dp"
+            android:layout_margin="15dp"
+            android:scaleType="fitXY"
+            android:elevation="10dp"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -23,6 +23,7 @@ public class ActivityCalculator extends AppCompatActivity {
 
     TextView TextView_PNL,
             TextView_ROE;
+    Double price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,11 @@ public class ActivityCalculator extends AppCompatActivity {
 
         Calculat_btn = findViewById(R.id.calculat_btn);
 
+        if (getIntent().getSerializableExtra("data")!=null){
+            price = (Double) getIntent().getSerializableExtra("data");
+        }
+        else price = Double.valueOf(0);
+        Edittext_entry_price.setText(price.toString());
 
         View.OnClickListener Calculat_lst = new View.OnClickListener() {
             @Override

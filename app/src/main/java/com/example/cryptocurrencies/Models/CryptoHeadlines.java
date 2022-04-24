@@ -8,7 +8,8 @@ public class CryptoHeadlines implements Serializable {
 
     String  id = "",
             symbol = "",
-            name = "", image = "",
+            name = "",
+            image = "",
             ath_date = "",
             atl_date = "",
             last_updated = "";
@@ -34,6 +35,16 @@ public class CryptoHeadlines implements Serializable {
             price_change_percentage_1h_in_currency = null,
             price_change_percentage_24h_in_currency = null,
             price_change_percentage_7d_in_currency = null;
+
+    Sparkline_in_7d sparkline_in_7d = null;
+
+    public Sparkline_in_7d getSparkline_in_7d() {
+        return sparkline_in_7d;
+    }
+
+    public void setSparkline_in_7d(Sparkline_in_7d sparkline_in_7d) {
+        this.sparkline_in_7d = sparkline_in_7d;
+    }
 
     public Roi getRoi() {
         return roi;

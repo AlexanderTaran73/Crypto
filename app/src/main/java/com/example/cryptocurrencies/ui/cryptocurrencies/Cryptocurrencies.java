@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.cryptocurrencies.ActivityCalculator;
 import com.example.cryptocurrencies.CryptoCustomAdapter;
+import com.example.cryptocurrencies.CryptoDetailsActivity;
 import com.example.cryptocurrencies.CryptoOnFetchDataListener;
 import com.example.cryptocurrencies.CryptoRequestManager;
 import com.example.cryptocurrencies.CryptoSelectListener;
@@ -90,9 +91,9 @@ public class Cryptocurrencies extends Fragment implements CryptoSelectListener {
         }
     }
 
-
     @Override
     public void OnCryptoClicked(CryptoHeadlines headlines) {
-
+        startActivity(new Intent(getActivity(), CryptoDetailsActivity.class)
+                .putExtra("data", headlines));
     }
 }

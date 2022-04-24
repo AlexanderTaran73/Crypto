@@ -57,9 +57,7 @@ public class News extends Fragment implements NewsSelectListener, View.OnClickLi
         mViewModel = new ViewModelProvider(this).get(NewsViewModel.class);
         // TODO: Use the ViewModel
 
-        dialog = new ProgressDialog(getActivity());
-        dialog.setTitle("Fetching news articles...");
-        dialog.show();
+
 
         b1 = getView().findViewById(R.id.btn_1);
         b1.setOnClickListener(this);
@@ -81,8 +79,7 @@ public class News extends Fragment implements NewsSelectListener, View.OnClickLi
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                dialog.setTitle("Fetching news articles of " + query);
-                dialog.show();
+
                 NewsRequestManager manager = new  NewsRequestManager(getActivity());
                 manager.getNewsHeadlines(listener, "", query);
                 return true;
@@ -108,7 +105,7 @@ public class News extends Fragment implements NewsSelectListener, View.OnClickLi
             }
             else {
                 showNews(list);
-                dialog.dismiss();
+
             }
         }
         @Override
@@ -131,7 +128,6 @@ public class News extends Fragment implements NewsSelectListener, View.OnClickLi
 
     @Override
     public void OnNewsClicked(NewsHeadlines headlines) {
-        System.out.println(headlines.getContent());
         startActivity(new Intent(getActivity(), NewsDetailsActivity.class)
         .putExtra("data", headlines));
 
@@ -142,8 +138,7 @@ public class News extends Fragment implements NewsSelectListener, View.OnClickLi
         Button button = (Button) v;
         String category = button.getText().toString();
 
-        dialog.setTitle("Fetching news articles of " + category);
-        dialog.show();
+
 
         NewsRequestManager manager = new  NewsRequestManager(getActivity());
         manager.getNewsHeadlines(listener, category, null);

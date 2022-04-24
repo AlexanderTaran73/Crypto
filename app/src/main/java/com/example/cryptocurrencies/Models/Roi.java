@@ -1,6 +1,8 @@
 package com.example.cryptocurrencies.Models;
 
-public class Roi {
+import java.io.Serializable;
+
+public class Roi implements Serializable {
     String currency = "";
     Double  times = null,
             percentage = null;

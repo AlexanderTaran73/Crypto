@@ -29,7 +29,7 @@ public class CryptoRequestManager {
     public void getCryptoHeadlines(CryptoOnFetchDataListener listener, String vs_currency, String ids, String order, Integer per_page, String price_change_percentage){
 
         CallCryptoApi callCryptoApi = retrofit.create(CallCryptoApi.class);
-        Call<List<CryptoHeadlines>> call = callCryptoApi.callHeadlines(vs_currency, ids, order, per_page, 1, false, price_change_percentage);
+        Call<List<CryptoHeadlines>> call = callCryptoApi.callHeadlines(vs_currency, ids, order, per_page, 1, true, price_change_percentage);
 
         try {
             call.enqueue(new Callback<List<CryptoHeadlines>>() {

@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
-                android:textSize="20sp"
+                android:autoSizeTextType="uniform"
                 android:textStyle="bold"
                 android:textColor="#14142B"
                 android:paddingTop="3dp"
