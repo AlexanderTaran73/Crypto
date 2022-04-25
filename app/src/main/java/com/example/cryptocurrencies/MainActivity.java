@@ -1,9 +1,8 @@
 package com.example.cryptocurrencies;
 
-import android.annotation.SuppressLint;
+
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -25,7 +24,12 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
 
+
+
+
         super.onCreate(savedInstanceState);
+
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

@@ -88,11 +88,11 @@ public class CryptoDetailsActivity extends AppCompatActivity{
         volume_24h_txt.setText(volume_24h_txt.getText()+"("+headlines.getSymbol().toUpperCase(Locale.ROOT)+")");
         price.setText(headlines.getCurrent_price().toString());
         if (headlines.getPrice_change_percentage_24h()>=0) {
-            change.setText(headlines.getPrice_change_24h().toString().substring(0, 10)+"  "+("+"+headlines.getPrice_change_percentage_24h().toString()).substring(0, 5));
+            change.setText(headlines.getPrice_change_24h().toString().substring(0, Math.min(10, headlines.getPrice_change_24h().toString().length()-1))+"  "+("+"+headlines.getPrice_change_percentage_24h().toString()).substring(0, 5));
             change.setTextColor(Color.parseColor("#159800"));
         }
         else {
-            change.setText(headlines.getPrice_change_24h().toString().substring(0, 10) + "  " + (headlines.getPrice_change_percentage_24h().toString()).substring(0, 5));
+            change.setText(headlines.getPrice_change_24h().toString().substring(0, Math.min(10, headlines.getPrice_change_24h().toString().length()-1)) + "  " + (headlines.getPrice_change_percentage_24h().toString()).substring(0, 5));
             change.setTextColor(Color.parseColor("#FF0000"));
         }
 
@@ -145,11 +145,11 @@ public class CryptoDetailsActivity extends AppCompatActivity{
                     lineChart.setData(data);
                     BigDecimal v = BigDecimal.valueOf(headlines.getPrice_change_percentage_7d_in_currency()*headlines.getCurrent_price()/100);
                     if (headlines.getPrice_change_percentage_24h()>=0) {
-                        change.setText(v.toString().substring(0, 10)+"  "+("+"+headlines.getPrice_change_percentage_7d_in_currency().toString()).substring(0, 5));
+                        change.setText(v.toString().substring(0, Math.min(10, v.toString().length()-1))+"  "+("+"+headlines.getPrice_change_percentage_7d_in_currency().toString()).substring(0, 5));
                         change.setTextColor(Color.parseColor("#159800"));
                     }
                     else {
-                        change.setText(v.toString().substring(0, 10)+ "  " + (headlines.getPrice_change_percentage_24h().toString()).substring(0, 5));
+                        change.setText(v.toString().substring(0, Math.min(10, v.toString().length()-1))+ "  " + (headlines.getPrice_change_percentage_24h().toString()).substring(0, 5));
                         change.setTextColor(Color.parseColor("#FF0000"));
                     }
 
@@ -174,11 +174,11 @@ public class CryptoDetailsActivity extends AppCompatActivity{
                     lineChart.setData(data);
 
                     if (headlines.getPrice_change_percentage_24h()>=0) {
-                        change.setText(headlines.getPrice_change_24h().toString().substring(0, 10)+"  "+("+"+headlines.getPrice_change_percentage_24h().toString()).substring(0, 5));
+                        change.setText(headlines.getPrice_change_24h().toString().substring(0, Math.min(10, headlines.getPrice_change_24h().toString().length()-1))+"  "+("+"+headlines.getPrice_change_percentage_24h().toString()).substring(0, 5));
                         change.setTextColor(Color.parseColor("#159800"));
                     }
                     else {
-                        change.setText(headlines.getPrice_change_24h().toString().substring(0, 10) + "  " + (headlines.getPrice_change_percentage_24h().toString()).substring(0, 5));
+                        change.setText(headlines.getPrice_change_24h().toString().substring(0, Math.min(10, headlines.getPrice_change_24h().toString().length()-1)) + "  " + (headlines.getPrice_change_percentage_24h().toString()).substring(0, 5));
                         change.setTextColor(Color.parseColor("#FF0000"));
                     }
                 }
