@@ -34,10 +34,15 @@ public class NewsCustomAdapter extends RecyclerView.Adapter<NewsCustomViewHolder
     @Override
     public void onBindViewHolder(@NonNull NewsCustomViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.text_title.setText(headlines.get(position).getTitle());
-        holder.text_source.setText(headlines.get(position).getSource().getName());
+        holder.text_source.setText(headlines.get(position).getDescription());
+        holder.news_pubDate.setText(headlines.get(position).getPubDate());
 
-        if (headlines.get(position).getUrlToImage()!=null){
-            Picasso.get().load(headlines.get(position).getUrlToImage()).into(holder.img_headline);
+        if (headlines.get(position).getImage_url()!=null){
+            holder.img_headline.setVisibility(View.VISIBLE);
+            Picasso.get().load(headlines.get(position).getImage_url()).into(holder.img_headline);
+        }
+        else {
+            holder.img_headline.setVisibility(View.GONE);
         }
 
         holder.cardView.setOnClickListener(v -> listener.OnNewsClicked(headlines.get(position)));

@@ -7,9 +7,8 @@ import java.util.List;
 
 public class NewsApiResponse implements Serializable {
     String status;
-    int titalResults;
-    List<NewsHeadlines> articles;
-
+    int totalResults;
+    List<NewsHeadlines> results;
 
     public String getStatus() {
         return status;
@@ -19,19 +18,19 @@ public class NewsApiResponse implements Serializable {
         this.status = status;
     }
 
-    public int getTitalResults() {
-        return titalResults;
+    public int getTotalResults() {
+        return totalResults;
     }
 
-    public void setTitalResults(int titalResults) {
-        this.titalResults = titalResults;
+    public void setTotalResults(int totalResults) {
+        this.totalResults = totalResults;
     }
 
-    public List<NewsHeadlines> getArticles() {
-        return articles;
+    public List<NewsHeadlines> getResults() {
+        return results;
     }
 
-    public void setArticles(List<NewsHeadlines> articles) {
-        this.articles = articles;
+    public void setResults(List<NewsHeadlines> results) {
+        this.results = results;
     }
 }

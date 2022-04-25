@@ -23,15 +23,15 @@ public class NewsRequestManager {
     Context context;
 
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://newsapi.org/v2/")
+            .baseUrl("https://newsdata.io/api/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
 
-    public void getNewsHeadlines(NewsOnFetchDataListener listener, String category, String query)
+    public void getNewsHeadlines(NewsOnFetchDataListener listener)
     {
         CallNewsApi callNewsApi = retrofit.create(CallNewsApi.class);
-        Call<NewsApiResponse> call = callNewsApi.callHeadlines("us", category, query, context.getString(R.string.apy_key));
+        Call<NewsApiResponse> call = callNewsApi.callHeadlines();
         try {
             call.enqueue(new Callback<NewsApiResponse>() {
                 @Override
@@ -41,7 +41,7 @@ public class NewsRequestManager {
                     }
 
                     if(response.body() != null){
-                    listener.onFetchData(response.body().getArticles(), response.message());}
+                    listener.onFetchData(response.body().getResults(), response.message());}
 
                 }
 
@@ -62,12 +62,9 @@ public class NewsRequestManager {
     }
 
     public interface CallNewsApi{
-        @GET("top-headlines")
+        @GET("1/news?apikey=pub_6835e68c783f68ca250522a9b21493ea902a&q=cryptocurrency")
         Call<NewsApiResponse> callHeadlines(
-                @Query("country") String country,
-                @Query("category") String category,
-                @Query("q") String query,
-                @Query("apiKey") String api_key
+
         );
 
     }

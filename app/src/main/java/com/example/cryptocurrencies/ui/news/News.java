@@ -31,12 +31,10 @@ import com.example.cryptocurrencies.R;
 
 import java.util.List;
 
-public class News extends Fragment implements NewsSelectListener, View.OnClickListener {
+public class News extends Fragment implements NewsSelectListener {
 
     RecyclerView recyclerView;
     NewsCustomAdapter adapter;
-    ProgressDialog dialog;
-    Button b1,b2,b3,b4,b5,b6,b7;
     SearchView searchView;
 
     private NewsViewModel mViewModel;
@@ -59,29 +57,14 @@ public class News extends Fragment implements NewsSelectListener, View.OnClickLi
 
 
 
-        b1 = getView().findViewById(R.id.btn_1);
-        b1.setOnClickListener(this);
-        b2 = getView().findViewById(R.id.btn_2);
-        b2.setOnClickListener(this);
-        b3 = getView().findViewById(R.id.btn_3);
-        b3.setOnClickListener(this);
-        b4 = getView().findViewById(R.id.btn_4);
-        b4.setOnClickListener(this);
-        b5 = getView().findViewById(R.id.btn_5);
-        b5.setOnClickListener(this);
-        b6 = getView().findViewById(R.id.btn_6);
-        b6.setOnClickListener(this);
-        b7 = getView().findViewById(R.id.btn_7);
-        b7.setOnClickListener(this);
-
         searchView = getView().findViewById(R.id.news_search_view);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                NewsRequestManager manager = new  NewsRequestManager(getActivity());
-                manager.getNewsHeadlines(listener, "", query);
+//                NewsRequestManager manager = new  NewsRequestManager(getActivity());
+//                manager.getNewsHeadlines(listener, "", query);
                 return true;
             }
 
@@ -93,7 +76,7 @@ public class News extends Fragment implements NewsSelectListener, View.OnClickLi
 
 
         NewsRequestManager manager = new  NewsRequestManager(getActivity());
-        manager.getNewsHeadlines(listener, "technology", null);
+        manager.getNewsHeadlines(listener);
 
     }
 
@@ -133,14 +116,5 @@ public class News extends Fragment implements NewsSelectListener, View.OnClickLi
 
     }
 
-    @Override
-    public void onClick(View v) {
-        Button button = (Button) v;
-        String category = button.getText().toString();
 
-
-
-        NewsRequestManager manager = new  NewsRequestManager(getActivity());
-        manager.getNewsHeadlines(listener, category, null);
-    }
 }

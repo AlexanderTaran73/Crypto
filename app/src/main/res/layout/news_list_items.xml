@@ -11,29 +11,29 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
 
-        android:weightSum="5"
         >
         <androidx.cardview.widget.CardView
-            android:layout_weight="3"
+            android:id="@+id/news_img_cardView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:cardCornerRadius="20dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:visibility="visible">
             <ImageView
                 android:id="@+id/news_img"
                 android:src="@drawable/nopicture_availableicon1"
                 android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:visibility="visible"
                 />
         </androidx.cardview.widget.CardView>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp">
             <TextView
                 android:id="@+id/news_text_title"
@@ -44,13 +44,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/news_text_source"
+                android:id="@+id/news_text_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:maxLines="3"
                 android:textColor="#6E7191"
                 android:textSize="14sp"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/news_pubDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:maxLines="1"
+                android:textColor="#6E7191"
+                android:textSize="12sp"
                 android:textStyle="normal" />
         </LinearLayout>
     </LinearLayout>
