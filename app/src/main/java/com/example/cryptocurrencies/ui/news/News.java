@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.cryptocurrencies.NewsCustomAdapter;
@@ -25,6 +26,7 @@ import com.example.cryptocurrencies.Models.NewsApiResponse;
 import com.example.cryptocurrencies.Models.NewsHeadlines;
 import com.example.cryptocurrencies.NewsDetailsActivity;
 import com.example.cryptocurrencies.NewsRequestManager;
+import com.example.cryptocurrencies.NewsSearchRequestManager;
 import com.example.cryptocurrencies.NewsSelectListener;
 import com.example.cryptocurrencies.NewsOnFetchDataListener;
 import com.example.cryptocurrencies.R;
@@ -36,6 +38,8 @@ public class News extends Fragment implements NewsSelectListener {
     RecyclerView recyclerView;
     NewsCustomAdapter adapter;
     SearchView searchView;
+
+    Integer counter = 0;
 
     private NewsViewModel mViewModel;
     public static News newInstance() {
@@ -59,12 +63,13 @@ public class News extends Fragment implements NewsSelectListener {
 
         searchView = getView().findViewById(R.id.news_search_view);
 
+
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
-//                NewsRequestManager manager = new  NewsRequestManager(getActivity());
-//                manager.getNewsHeadlines(listener, "", query);
+                NewsSearchRequestManager manager = new  NewsSearchRequestManager(getActivity());
+                manager.getSearchNewsHeadlines(listener,0, query);
                 return true;
             }
 
@@ -76,13 +81,17 @@ public class News extends Fragment implements NewsSelectListener {
 
 
         NewsRequestManager manager = new  NewsRequestManager(getActivity());
-        manager.getNewsHeadlines(listener);
+        manager.getNewsHeadlines(listener, counter);
+
+
+
 
     }
 
     private final NewsOnFetchDataListener<NewsApiResponse> listener = new NewsOnFetchDataListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
+
             if (list.isEmpty()){
                 Toast.makeText(getActivity(), "No data found!!!", Toast.LENGTH_SHORT).show();
             }

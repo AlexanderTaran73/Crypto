@@ -7,7 +7,7 @@ import java.util.List;
 
 public class NewsApiResponse implements Serializable {
     String status;
-    int totalResults;
+    int totalResults, nextPage;
     List<NewsHeadlines> results;
 
     public String getStatus() {
@@ -32,5 +32,13 @@ public class NewsApiResponse implements Serializable {
 
     public void setResults(List<NewsHeadlines> results) {
         this.results = results;
+    }
+
+    public int getNextPage() {
+        return nextPage;
+    }
+
+    public void setNextPage(int nextPage) {
+        this.nextPage = nextPage;
     }
 }
