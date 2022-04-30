@@ -112,7 +112,7 @@ public class CryptoDetailsActivity extends AppCompatActivity{
         int counter = 0;
         for (Double i :sparkline_in_7d) {
 
-            if (counter/6 == 0) values.add(new Entry(counter, Float.parseFloat(i.toString())));
+            if (counter>144) values.add(new Entry(counter-144, Float.parseFloat(i.toString())));
             counter++;
         }
 
@@ -120,7 +120,6 @@ public class CryptoDetailsActivity extends AppCompatActivity{
         ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set);
         LineData data = new LineData(dataSets);
-
         lineChart.setData(data);
 
 
@@ -133,7 +132,7 @@ public class CryptoDetailsActivity extends AppCompatActivity{
                     int counter = 0;
                     for (Double i :sparkline_in_7d) {
 
-                        if (counter/24 == 0) values.add(new Entry(counter, Float.parseFloat(i.toString())));
+                        if (counter/12 == 0) values.add(new Entry(counter, Float.parseFloat(i.toString())));
                         counter++;
                     }
 

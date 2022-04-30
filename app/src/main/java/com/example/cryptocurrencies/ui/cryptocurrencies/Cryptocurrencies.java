@@ -48,8 +48,6 @@ public class Cryptocurrencies extends Fragment implements CryptoSelectListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(CryptocurrenciesViewModel.class);
-        // TODO: Use the ViewModel
-
 
 
         Calculator_btn = (ImageButton) getView().findViewById(R.id.calculator_btn);
