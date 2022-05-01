@@ -50,7 +50,11 @@ public class Favorites extends Fragment implements CryptoSelectListener {
         mViewModel = new ViewModelProvider(this).get(FavoritesViewModel.class);
 
 
+
+
         CryptoRequestManager manager = new CryptoRequestManager(getActivity());
+
+
         String ids = "bitcoin,ethereum,tether";
         manager.getCryptoHeadlines(crypto_listener, "usd", ids, "market_cap_desc", 100, "1h,24h,7d");
 
