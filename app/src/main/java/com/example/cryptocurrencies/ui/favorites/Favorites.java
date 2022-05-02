@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,11 +18,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.cryptocurrencies.CryptoCustomAdapter;
-import com.example.cryptocurrencies.CryptoDetailsActivity;
-import com.example.cryptocurrencies.CryptoOnFetchDataListener;
-import com.example.cryptocurrencies.CryptoRequestManager;
-import com.example.cryptocurrencies.CryptoSelectListener;
+import com.example.cryptocurrencies.App;
+import com.example.cryptocurrencies.Models.AppDatabase;
+import com.example.cryptocurrencies.Models.FavItem;
+import com.example.cryptocurrencies.Models.FavItemDao;
+import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoCustomAdapter;
+import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoDetailsActivity;
+import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoOnFetchDataListener;
+import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoRequestManager;
+import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoSelectListener;
 import com.example.cryptocurrencies.Models.CryptoHeadlines;
 import com.example.cryptocurrencies.R;
 
@@ -50,13 +55,25 @@ public class Favorites extends Fragment implements CryptoSelectListener {
         mViewModel = new ViewModelProvider(this).get(FavoritesViewModel.class);
 
 
+        AppDatabase db = App.getInstance().getDatabase();
+
+        FavItemDao favItemDao = db.favItemDao();
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                String ids = "";
+                List<String> list = favItemDao.getNameByTipe("crypto");
+                for (String i : list) {
+                    ids = ids+i+",";
+                }
+                if(!list.isEmpty()){
+                CryptoRequestManager manager = new CryptoRequestManager(getActivity());
+                manager.getCryptoHeadlines(crypto_listener, "usd", ids, "market_cap_desc", 100, "1h,24h,7d");}
+
+            }
+        });
 
 
-        CryptoRequestManager manager = new CryptoRequestManager(getActivity());
-
-
-        String ids = "bitcoin,ethereum,tether";
-        manager.getCryptoHeadlines(crypto_listener, "usd", ids, "market_cap_desc", 100, "1h,24h,7d");
 
     }
 

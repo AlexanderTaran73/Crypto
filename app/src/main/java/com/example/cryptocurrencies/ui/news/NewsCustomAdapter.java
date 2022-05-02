@@ -1,4 +1,4 @@
-package com.example.cryptocurrencies;
+package com.example.cryptocurrencies.ui.news;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cryptocurrencies.Models.NewsHeadlines;
+import com.example.cryptocurrencies.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

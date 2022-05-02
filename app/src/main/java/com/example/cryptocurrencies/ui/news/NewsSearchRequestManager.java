@@ -1,4 +1,4 @@
-package com.example.cryptocurrencies;
+package com.example.cryptocurrencies.ui.news;
 
 import android.content.Context;
 import android.widget.Toast;

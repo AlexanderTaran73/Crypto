@@ -1,4 +1,4 @@
-package com.example.cryptocurrencies;
+package com.example.cryptocurrencies.ui.cryptocurrencies;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -6,6 +6,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,22 +15,24 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.cryptocurrencies.ActivityCalculator;
+import com.example.cryptocurrencies.App;
+import com.example.cryptocurrencies.Models.AppDatabase;
 import com.example.cryptocurrencies.Models.CryptoHeadlines;
-import com.example.cryptocurrencies.Models.NewsHeadlines;
+import com.example.cryptocurrencies.Models.FavItem;
+import com.example.cryptocurrencies.Models.FavItemDao;
+import com.example.cryptocurrencies.R;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.github.mikephil.charting.listener.OnChartGestureListener;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.squareup.picasso.Picasso;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 public class CryptoDetailsActivity extends AppCompatActivity{
     CryptoHeadlines headlines;
@@ -102,6 +105,23 @@ public class CryptoDetailsActivity extends AppCompatActivity{
         BigDecimal v = BigDecimal.valueOf(headlines.getTotal_volume()/headlines.getCurrent_price());
         int m = Math.min(14, v.toString().length());
         volume_24h.setText(v.toString().substring(0,m-1));
+
+        AppDatabase db = App.getInstance().getDatabase();
+        FavItemDao favItemDao = db.favItemDao();
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                String name = headlines.getId();
+                List<String> list = favItemDao.getNameByTipe("crypto");
+                if (list.contains(name)){
+                    button.setText("Remove from favorites");
+                }
+                else {
+                    button.setText("Add to favorites");
+                }
+            }
+        });
+
 
 
         lineChart.setDragEnabled(true);
@@ -187,7 +207,33 @@ public class CryptoDetailsActivity extends AppCompatActivity{
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ADD TO FAVORITES
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        String name = headlines.getId();
+                        List<String> list = favItemDao.getNameByTipe("crypto");
+                        if (!list.contains(name)){
+                            favItemDao.insert(new FavItem("crypto", name));
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    button.setText("Remove from favorites");
+                                }
+                            });
+
+                        }
+                        else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    button.setText("Add to favorites");
+                                }
+                            });
+                            favItemDao.deleteByTypeANDName("crypto", name);
+                        }
+                    }
+                });
+
             }
         });
 

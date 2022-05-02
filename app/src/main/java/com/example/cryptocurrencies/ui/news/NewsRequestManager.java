@@ -1,4 +1,4 @@
-package com.example.cryptocurrencies;
+package com.example.cryptocurrencies.ui.news;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -7,10 +7,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.cryptocurrencies.Models.NewsApiResponse;
-import com.example.cryptocurrencies.Models.NewsHeadlines;
-import com.example.cryptocurrencies.ui.news.News;
 
-import java.util.List;
 import java.util.Objects;
 
 import retrofit2.Call;

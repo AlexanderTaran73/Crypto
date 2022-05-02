@@ -1,10 +1,11 @@
-package com.example.cryptocurrencies;
+package com.example.cryptocurrencies.ui.cryptocurrencies;
 
 import android.content.Context;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import com.example.cryptocurrencies.Models.CryptoHeadlines;
+import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoOnFetchDataListener;
 
 
 import java.util.List;

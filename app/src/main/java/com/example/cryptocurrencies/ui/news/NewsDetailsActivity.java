@@ -1,4 +1,4 @@
-package com.example.cryptocurrencies;
+package com.example.cryptocurrencies.ui.news;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.cryptocurrencies.Models.NewsHeadlines;
+import com.example.cryptocurrencies.R;
 import com.squareup.picasso.Picasso;
 
 public class NewsDetailsActivity extends AppCompatActivity {

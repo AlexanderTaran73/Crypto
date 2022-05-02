@@ -19,11 +19,6 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.cryptocurrencies.ActivityCalculator;
-import com.example.cryptocurrencies.CryptoCustomAdapter;
-import com.example.cryptocurrencies.CryptoDetailsActivity;
-import com.example.cryptocurrencies.CryptoOnFetchDataListener;
-import com.example.cryptocurrencies.CryptoRequestManager;
-import com.example.cryptocurrencies.CryptoSelectListener;
 import com.example.cryptocurrencies.Models.CryptoHeadlines;
 import com.example.cryptocurrencies.R;
 

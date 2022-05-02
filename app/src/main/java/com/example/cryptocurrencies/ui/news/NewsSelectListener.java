@@ -1,4 +1,4 @@
-package com.example.cryptocurrencies;
+package com.example.cryptocurrencies.ui.news;
 
 import com.example.cryptocurrencies.Models.NewsHeadlines;
 

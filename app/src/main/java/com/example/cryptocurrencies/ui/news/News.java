@@ -3,7 +3,6 @@ package com.example.cryptocurrencies.ui.news;
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,18 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.cryptocurrencies.NewsCustomAdapter;
 import com.example.cryptocurrencies.Models.NewsApiResponse;
 import com.example.cryptocurrencies.Models.NewsHeadlines;
-import com.example.cryptocurrencies.NewsDetailsActivity;
-import com.example.cryptocurrencies.NewsRequestManager;
-import com.example.cryptocurrencies.NewsSearchRequestManager;
-import com.example.cryptocurrencies.NewsSelectListener;
-import com.example.cryptocurrencies.NewsOnFetchDataListener;
 import com.example.cryptocurrencies.R;
 
 import java.util.List;

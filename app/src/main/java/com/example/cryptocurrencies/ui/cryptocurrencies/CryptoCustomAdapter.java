@@ -1,4 +1,4 @@
-package com.example.cryptocurrencies;
+package com.example.cryptocurrencies.ui.cryptocurrencies;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cryptocurrencies.Models.CryptoHeadlines;
+import com.example.cryptocurrencies.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
