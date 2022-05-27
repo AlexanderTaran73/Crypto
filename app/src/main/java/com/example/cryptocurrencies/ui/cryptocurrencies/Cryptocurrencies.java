@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -50,8 +51,14 @@ public class Cryptocurrencies extends Fragment implements CryptoSelectListener {
         View.OnClickListener listener = view -> startActivity(new Intent(getActivity(), ActivityCalculator.class));
         Calculator_btn.setOnClickListener(listener);
 
-        CryptoRequestManager manager = new CryptoRequestManager(getActivity());
-        manager.getCryptoHeadlines(crypto_listener, "usd", "", "market_cap_desc", 100, "1h,24h,7d");
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                CryptoRequestManager manager = new CryptoRequestManager(getActivity());
+                manager.getCryptoHeadlines(crypto_listener, "usd", "", "market_cap_desc", 50, "1h,24h,7d");
+            }
+        });
+
 
     }
 

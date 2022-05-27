@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -51,7 +52,6 @@ public class News extends Fragment implements NewsSelectListener {
         // TODO: Use the ViewModel
 
 
-
         searchView = getView().findViewById(R.id.news_search_view);
 
 
@@ -59,8 +59,14 @@ public class News extends Fragment implements NewsSelectListener {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                NewsSearchRequestManager manager = new  NewsSearchRequestManager(getActivity());
-                manager.getSearchNewsHeadlines(listener,0, query);
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        NewsSearchRequestManager manager = new  NewsSearchRequestManager(getActivity());
+                        manager.getSearchNewsHeadlines(listener,0, query);
+                    }
+                });
+
                 return true;
             }
 
@@ -69,26 +75,22 @@ public class News extends Fragment implements NewsSelectListener {
                 return false;
             }
         });
-
-
-        NewsRequestManager manager = new  NewsRequestManager(getActivity());
-        manager.getNewsHeadlines(listener, counter);
-
-
-
-
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                NewsRequestManager manager = new  NewsRequestManager(getActivity());
+                manager.getNewsHeadlines(listener, counter);
+            }
+        });
     }
-
     private final NewsOnFetchDataListener<NewsApiResponse> listener = new NewsOnFetchDataListener<NewsApiResponse>() {
         @Override
         public void onFetchData(List<NewsHeadlines> list, String message) {
-
             if (list.isEmpty()){
                 Toast.makeText(getActivity(), "No data found!!!", Toast.LENGTH_SHORT).show();
             }
             else {
                 showNews(list);
-
             }
         }
         @Override
@@ -101,11 +103,15 @@ public class News extends Fragment implements NewsSelectListener {
     private void showNews(List<NewsHeadlines> list) {
         Context context = getActivity();
         if (context!=null) {
+            try {
             recyclerView = getView().findViewById(R.id.recycler_news);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
             adapter = new NewsCustomAdapter(context, list, this);
-            recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(adapter);}
+            catch (Exception e){
+                System.out.println(e);
+            }
         }
     }
 
@@ -113,8 +119,5 @@ public class News extends Fragment implements NewsSelectListener {
     public void OnNewsClicked(NewsHeadlines headlines) {
         startActivity(new Intent(getActivity(), NewsDetailsActivity.class)
         .putExtra("data", headlines));
-
     }
-
-
 }

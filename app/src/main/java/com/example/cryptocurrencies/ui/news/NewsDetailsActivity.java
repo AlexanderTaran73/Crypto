@@ -40,16 +40,20 @@ public class NewsDetailsActivity extends AppCompatActivity {
         headlines = (NewsHeadlines) getIntent().getSerializableExtra("data");
 
 
+
+
+
         news_details_title.setText(headlines.getTitle());
         news_details_full_description.setText(headlines.getFull_description());
         news_details_content.setText(headlines.getContent());
         news_details_pubDate.setText(headlines.getPubDate());
 
         String v = "";
+        if(headlines.getCreator()!=null){
         for (String i : headlines.getCreator()) {
             v = v + i+" ";
         }
-        news_details_creators.setText(v);
+        news_details_creators.setText(v);}
         if (headlines.getImage_url()!=null){
             news_details_img.setVisibility(View.VISIBLE);
             Picasso.get().load(headlines.getImage_url()).into(news_details_img);
@@ -57,5 +61,6 @@ public class NewsDetailsActivity extends AppCompatActivity {
         else {
             news_details_img.setVisibility(View.GONE);
         }
+
     }
 }

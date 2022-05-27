@@ -39,12 +39,9 @@ public class CryptoRequestManager {
                     if (!Objects.requireNonNull(response).isSuccessful()){
                         Toast.makeText(context, "Error!!!", Toast.LENGTH_SHORT).show();
                     }
-
                     if(response.body() != null){
                         listener.onFetchData(response.body(), response.message());}
-
                 }
-
                 @Override
                 public void onFailure(@NonNull Call<List<CryptoHeadlines>> call, @NonNull Throwable t) {
                     listener.onError("Request Failed!");

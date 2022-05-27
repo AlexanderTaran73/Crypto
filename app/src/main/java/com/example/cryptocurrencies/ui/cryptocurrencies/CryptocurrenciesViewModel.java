@@ -5,6 +5,4 @@ import androidx.lifecycle.ViewModel;
 
 public class CryptocurrenciesViewModel extends ViewModel {
     // TODO: Implement the ViewModel
-
-
 }
