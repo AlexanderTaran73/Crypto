@@ -6,10 +6,38 @@
     tools:context=".ui.notifications.Notifications"
     android:orientation="vertical">
 
-    <Spinner
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_notifications"
+        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <RelativeLayout
+        android:id="@+id/notifications_btn_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/crypto_selection"/>
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-100dp">
 
+        <ImageButton
+            android:id="@+id/notifications_btn"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/more"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/oval_button"
+            android:padding="15dp"
+            android:layout_margin="15dp"
+            android:scaleType="fitXY"
+            android:elevation="10dp"
+            />
+    </RelativeLayout>
 
 </LinearLayout>

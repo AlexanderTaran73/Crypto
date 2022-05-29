@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 import java.util.Locale;
 
-public class CryptoCustomAdapter  extends RecyclerView.Adapter<CryptoCustomViewHolder> {
+public class CryptoCustomAdapter extends RecyclerView.Adapter<CryptoCustomViewHolder> {
     private Context context;
     private List<CryptoHeadlines> headlines;
     private CryptoSelectListener listener;

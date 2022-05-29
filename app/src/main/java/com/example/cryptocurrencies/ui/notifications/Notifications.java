@@ -2,22 +2,34 @@ package com.example.cryptocurrencies.ui.notifications;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.cryptocurrencies.ActivityCalculator;
+import com.example.cryptocurrencies.App;
+import com.example.cryptocurrencies.Models.AppDatabase;
 import com.example.cryptocurrencies.Models.CryptoHeadlines;
+import com.example.cryptocurrencies.Models.NotificationsHeadlines;
+import com.example.cryptocurrencies.Models.NotificationsItem;
+import com.example.cryptocurrencies.Models.NotificationsItemDao;
 import com.example.cryptocurrencies.R;
+import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoCustomAdapter;
 import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoOnFetchDataListener;
 import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoRequestManager;
 
@@ -25,9 +37,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class Notifications extends Fragment {
+public class Notifications extends Fragment implements NotificationsSelectListener{
 
     private NotificationsViewModel mViewModel;
+
+    ImageButton notifications_btn;
+    RecyclerView recyclerView;
+    NotificationsCustomAdapter adapter;
 
     public static Notifications newInstance() {
         return new Notifications();
@@ -39,49 +55,39 @@ public class Notifications extends Fragment {
         return inflater.inflate(R.layout.fragment_notifications, container, false);
     }
 
-    String[] arr = new String[50];
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
         // TODO: Use the ViewModel
+        notifications_btn = (ImageButton) getView().findViewById(R.id.notifications_btn);
 
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                CryptoRequestManager manager = new CryptoRequestManager(getActivity());
-                manager.getCryptoHeadlines(crypto_listener, "usd", "", "market_cap_desc", 50, "1h,24h,7d");
-            }
-        });
+        View.OnClickListener listener = view -> startActivity(new Intent(getActivity(), NotificationsStart.class));
+        notifications_btn.setOnClickListener(listener);
 
-        arr[0]="BTC";
-        ArrayAdapter<String> cryptoSelectionAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arr);
-        cryptoSelectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner spCryptoSelection = getView().findViewById(R.id.crypto_selection);
-        spCryptoSelection.setAdapter(cryptoSelectionAdapter);
+
+
+        AppDatabase db = App.getInstance().getDatabase();
+        NotificationsItemDao notificationsItemDao = db.notificationsItemDao();
+
+
 
     }
 
-
-    private final CryptoOnFetchDataListener crypto_listener = new CryptoOnFetchDataListener() {
-        @Override
-        public void onFetchData(List<CryptoHeadlines> list, String message) {
-            int counter = 0;
-            if (list.isEmpty()){
-                Toast.makeText(getActivity(), "No data found!!!", Toast.LENGTH_SHORT).show();
-            }
-            else { for (CryptoHeadlines i : list) {
-                    arr[counter]=i.getSymbol().toUpperCase(Locale.ROOT);
-                    counter++;
-                }
-            }
+    private void showNotifications(List<NotificationsHeadlines> list){
+        Context context = getActivity();
+        if (context!=null){
+            recyclerView = getView().findViewById(R.id.recycler_notifications);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+            adapter = new NotificationsCustomAdapter(context, list, this);
+            recyclerView.setAdapter(adapter);
         }
+    }
 
-        @Override
-        public void onError(String message) {
-            Toast.makeText(getActivity(), "An Error Occured!!!", Toast.LENGTH_SHORT).show();
 
-        }
-    };
+    @Override
+    public void OnNotificationsClicked(NotificationsHeadlines headlines) {
+
+    }
 }
