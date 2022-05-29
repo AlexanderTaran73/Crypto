@@ -74,7 +74,6 @@ public class Favorites extends Fragment implements CryptoSelectListener {
         });
 
 
-
     }
 
 

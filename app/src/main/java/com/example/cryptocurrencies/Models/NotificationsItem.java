@@ -4,26 +4,27 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class NotificationsItem {
+public class NotificationsItem implements Serializable {
 
-    public NotificationsItem(String symbol, String name, String image, String type) {
+    public NotificationsItem(String symbol, String time, String image, String type) {
         this.symbol = symbol;
-        this.name = name;
+        this.time = time;
         this.image = image;
         this.type = type;
     }
 
     @PrimaryKey(autoGenerate = true)
-    public long id;
+    public int id;
 
     @ColumnInfo(name = "symbol")
     public String symbol;
 
-    @ColumnInfo(name = "name")
-    public String name;
+    @ColumnInfo(name = "time")
+    public String time;
 
     @ColumnInfo(name = "image")
     public String image;
@@ -36,11 +37,50 @@ public class NotificationsItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NotificationsItem that = (NotificationsItem) o;
-        return id == that.id && Objects.equals(symbol, that.symbol) && Objects.equals(name, that.name) && Objects.equals(image, that.image) && Objects.equals(type, that.type);
+        return id == that.id && Objects.equals(symbol, that.symbol) && Objects.equals(time, that.time) && Objects.equals(image, that.image) && Objects.equals(type, that.type);
     }
 
     @Override
-    public int hashCode() { return Objects.hash(id, symbol, name, image, type); }
+    public int hashCode() { return Objects.hash(id, symbol, time, image, type); }
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String name) {
+        this.time = time;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

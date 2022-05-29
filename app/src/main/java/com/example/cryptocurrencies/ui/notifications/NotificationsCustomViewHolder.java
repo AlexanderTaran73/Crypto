@@ -1,6 +1,7 @@
 package com.example.cryptocurrencies.ui.notifications;
 
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,11 +15,13 @@ public class NotificationsCustomViewHolder extends RecyclerView.ViewHolder {
     ImageView icon;
     TextView symbol, type;
     CardView cardView;
+    ImageButton notifications_delete_btn;
     public NotificationsCustomViewHolder(@NonNull View itemView) {
         super(itemView);
         icon = itemView.findViewById(R.id.notifications_img);
         symbol = itemView.findViewById(R.id.notifications_symbol);
         type = itemView.findViewById(R.id.notifications_type);
         cardView = itemView.findViewById(R.id.notifications_container);
+        notifications_delete_btn = itemView.findViewById(R.id.notifications_delete_btn);
     }
 }

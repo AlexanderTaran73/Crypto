@@ -8,8 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.cryptocurrencies.Models.CryptoHeadlines;
-import com.example.cryptocurrencies.Models.NotificationsHeadlines;
+import com.example.cryptocurrencies.Models.NotificationsItem;
 import com.example.cryptocurrencies.R;
 
 import com.squareup.picasso.Picasso;
@@ -20,10 +19,10 @@ import java.util.Locale;
 public class NotificationsCustomAdapter extends RecyclerView.Adapter<NotificationsCustomViewHolder> {
 
     private Context context;
-    private List<NotificationsHeadlines> headlines;
+    private List<NotificationsItem> headlines;
     private NotificationsSelectListener listener;
 
-    public NotificationsCustomAdapter(Context context, List<NotificationsHeadlines> headlines, NotificationsSelectListener listener) {
+    public NotificationsCustomAdapter(Context context, List<NotificationsItem> headlines, NotificationsSelectListener listener) {
         this.context = context;
         this.headlines = headlines;
         this.listener = listener;
@@ -40,13 +39,14 @@ public class NotificationsCustomAdapter extends RecyclerView.Adapter<Notificatio
     public void onBindViewHolder(@NonNull NotificationsCustomViewHolder holder, int position) {
 
         holder.symbol.setText(headlines.get(position).getSymbol().toUpperCase(Locale.ROOT));
-        holder.type.setText(headlines.get(position).getType());
+        holder.type.setText(headlines.get(position).getTime());
 
         if (headlines.get(position).getImage()!=null){
             Picasso.get().load(headlines.get(position).getImage()).into(holder.icon);
         }
 
         holder.cardView.setOnClickListener(v -> listener.OnNotificationsClicked(headlines.get(position)));
+        holder.notifications_delete_btn.setOnClickListener(v -> listener.OnNotificationsDeleteClicked(headlines.get(position)));
     }
 
     @Override

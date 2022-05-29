@@ -20,10 +20,10 @@ public interface NotificationsItemDao {
     void deleteAll();
 
     @Query("SELECT * FROM notificationsitem WHERE id = :id")
-    FavItem getById(long id);
+    NotificationsItem getById(long id);
 
     @Query("DELETE FROM notificationsitem WHERE id = :id")
-    FavItem deleteById(long id);
+    void deleteById(int id);
 
     @Query("SELECT * FROM notificationsitem WHERE type = :type")
     List<NotificationsItem> getByType(String type);

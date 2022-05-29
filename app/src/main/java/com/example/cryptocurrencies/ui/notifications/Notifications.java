@@ -16,26 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.example.cryptocurrencies.ActivityCalculator;
 import com.example.cryptocurrencies.App;
 import com.example.cryptocurrencies.Models.AppDatabase;
-import com.example.cryptocurrencies.Models.CryptoHeadlines;
-import com.example.cryptocurrencies.Models.NotificationsHeadlines;
 import com.example.cryptocurrencies.Models.NotificationsItem;
 import com.example.cryptocurrencies.Models.NotificationsItemDao;
 import com.example.cryptocurrencies.R;
-import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoCustomAdapter;
-import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoOnFetchDataListener;
-import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoRequestManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Notifications extends Fragment implements NotificationsSelectListener{
 
@@ -71,12 +61,21 @@ public class Notifications extends Fragment implements NotificationsSelectListen
         NotificationsItemDao notificationsItemDao = db.notificationsItemDao();
 
 
+        List<NotificationsItem> list = new ArrayList<NotificationsItem>();
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                list.addAll(notificationsItemDao.getAll());
+            }
+        });
+        showNotifications(list);
 
     }
 
-    private void showNotifications(List<NotificationsHeadlines> list){
+    private void showNotifications(List<NotificationsItem> list){
         Context context = getActivity();
         if (context!=null){
+
             recyclerView = getView().findViewById(R.id.recycler_notifications);
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
@@ -87,7 +86,29 @@ public class Notifications extends Fragment implements NotificationsSelectListen
 
 
     @Override
-    public void OnNotificationsClicked(NotificationsHeadlines headlines) {
+    public void OnNotificationsClicked(NotificationsItem headlines) {
+//*********
+    }
 
+    @Override
+    public void OnNotificationsDeleteClicked(NotificationsItem headlines) {
+        AppDatabase db = App.getInstance().getDatabase();
+        NotificationsItemDao notificationsItemDao = db.notificationsItemDao();
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                notificationsItemDao.deleteById(headlines.getId());
+            }
+        });
+
+        List<NotificationsItem> list = new ArrayList<NotificationsItem>();
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                list.addAll(notificationsItemDao.getAll());
+            }
+        });
+        showNotifications(list);
     }
 }
