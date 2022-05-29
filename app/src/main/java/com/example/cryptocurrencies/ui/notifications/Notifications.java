@@ -1,5 +1,7 @@
 package com.example.cryptocurrencies.ui.notifications;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
@@ -87,7 +89,7 @@ public class Notifications extends Fragment implements NotificationsSelectListen
 
     @Override
     public void OnNotificationsClicked(NotificationsItem headlines) {
-//*********
+
     }
 
     @Override
@@ -95,6 +97,8 @@ public class Notifications extends Fragment implements NotificationsSelectListen
         AppDatabase db = App.getInstance().getDatabase();
         NotificationsItemDao notificationsItemDao = db.notificationsItemDao();
 
+        NotificationsAlarm notificationsAlarm = new NotificationsAlarm();
+        notificationsAlarm.cancelNotificationsAlarm(headlines, getContext());
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {

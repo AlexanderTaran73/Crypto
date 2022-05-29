@@ -11,6 +11,7 @@ import com.example.cryptocurrencies.R;
 import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoOnFetchDataListener;
 import com.example.cryptocurrencies.ui.cryptocurrencies.CryptoRequestManager;
 
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -65,6 +66,8 @@ public class NotificationsStart extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 String symbol = spCryptoSelection.getSelectedItem().toString(),
                         type = spTypeSelection.getSelectedItem().toString();
 
@@ -78,6 +81,8 @@ public class NotificationsStart extends AppCompatActivity {
                         AppDatabase db = App.getInstance().getDatabase();
                         NotificationsItemDao notificationsItemDao = db.notificationsItemDao();
 
+                        NotificationsAlarm notificationsAlarm = new NotificationsAlarm();
+                        notificationsAlarm.setNotificationsAlarm(new NotificationsItem(symbol, time, null, type), hours, minutes, NotificationsStart.this);
                         AsyncTask.execute(new Runnable() {
                             @Override
                             public void run() {
