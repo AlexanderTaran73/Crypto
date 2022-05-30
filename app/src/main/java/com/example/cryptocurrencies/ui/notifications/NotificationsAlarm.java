@@ -23,7 +23,7 @@ public class NotificationsAlarm {
         intent.putExtra("item", new String[]{Integer.toString(item.getId()), item.getSymbol(), item.getImage(), item.getType(), item.getTime()});
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, item.getId(), intent, 0);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 
     public void cancelNotificationsAlarm(NotificationsItem item, Context context){

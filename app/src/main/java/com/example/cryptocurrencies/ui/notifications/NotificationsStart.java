@@ -28,7 +28,7 @@ public class NotificationsStart extends AppCompatActivity {
 
     Button button;
     EditText edit_hours, edit_minutes;
-    String[] arr = new String[50];
+    String[] arr = new String[50], arr2 = new String[50];
     String[] type_arr = new String[]{"Time", "Price"};
 
 
@@ -45,7 +45,7 @@ public class NotificationsStart extends AppCompatActivity {
                 manager.getCryptoHeadlines(crypto_listener, "usd", "", "market_cap_desc", 50, "1h,24h,7d");
             }
         });
-        arr[0]="BTC";
+        arr[0]="BITCOIN";
         ArrayAdapter<String> cryptoSelectionAdapter = new ArrayAdapter<String>(NotificationsStart.this, android.R.layout.simple_spinner_item, arr);
         cryptoSelectionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spCryptoSelection = findViewById(R.id.crypto_selection);
@@ -77,18 +77,33 @@ public class NotificationsStart extends AppCompatActivity {
 
                     if (hours>23 || minutes>59){ Toast.makeText(getApplicationContext(), "Wrong time!", Toast.LENGTH_SHORT).show();}
                     else {
-                        String time = hours+":"+minutes;
+
+
+
                         AppDatabase db = App.getInstance().getDatabase();
                         NotificationsItemDao notificationsItemDao = db.notificationsItemDao();
 
                         NotificationsAlarm notificationsAlarm = new NotificationsAlarm();
-                        notificationsAlarm.setNotificationsAlarm(new NotificationsItem(symbol, time, null, type), hours, minutes, NotificationsStart.this);
-                        AsyncTask.execute(new Runnable() {
-                            @Override
-                            public void run() {
-                                notificationsItemDao.insert(new NotificationsItem(symbol, time, null, type));
-                            }
-                        });
+                        notificationsAlarm.setNotificationsAlarm(new NotificationsItem(symbol, hours+":"+minutes, null, type), hours, minutes, NotificationsStart.this);
+
+                        if (String.valueOf(minutes).length()<2){
+                            String time = hours+":0"+minutes;
+                            AsyncTask.execute(new Runnable() {
+                                @Override
+                                public void run() {
+                                    notificationsItemDao.insert(new NotificationsItem(symbol, time, arr2[(int) spCryptoSelection.getSelectedItemId()], type));
+                                }
+                            });
+                        }
+                        else {
+                            String time = hours+":"+minutes;
+                            AsyncTask.execute(new Runnable() {
+                                @Override
+                                public void run() {
+                                    notificationsItemDao.insert(new NotificationsItem(symbol, time, arr2[(int) spCryptoSelection.getSelectedItemId()], type));
+                                }
+                            });
+                        }
 
                 }}
                 catch (Exception e){ Toast.makeText(getApplicationContext(), "Wrong time!", Toast.LENGTH_SHORT).show();}
@@ -106,7 +121,8 @@ public class NotificationsStart extends AppCompatActivity {
                 Toast.makeText(NotificationsStart.this, "No data found!!!", Toast.LENGTH_SHORT).show();
             }
             else { for (CryptoHeadlines i : list) {
-                arr[counter]=i.getSymbol().toUpperCase(Locale.ROOT);
+                arr[counter]=i.getName().toUpperCase(Locale.ROOT);
+                arr2[counter]=i.getImage();
                 counter++;
             }
             }

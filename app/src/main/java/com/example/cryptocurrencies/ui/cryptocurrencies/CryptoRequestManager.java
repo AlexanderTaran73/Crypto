@@ -54,6 +54,33 @@ public class CryptoRequestManager {
         }
     }
 
+    public void getCryptoHeadlinesNotifications(CryptoOnFetchDataListenerNoti listener, String vs_currency, String ids, String order, Integer per_page, String price_change_percentage, Context c, String[] arr){
+
+        CallCryptoApi callCryptoApi = retrofit.create(CallCryptoApi.class);
+        Call<List<CryptoHeadlines>> call = callCryptoApi.callHeadlines(vs_currency, ids, order, per_page, 1, true, price_change_percentage);
+
+        try {
+            call.enqueue(new Callback<List<CryptoHeadlines>>() {
+                @Override
+                public void onResponse(@NonNull Call<List<CryptoHeadlines>> call, @NonNull Response<List<CryptoHeadlines>> response) {
+                    if (!Objects.requireNonNull(response).isSuccessful()){
+                        Toast.makeText(context, "Error!!!", Toast.LENGTH_SHORT).show();
+                    }
+                    if(response.body() != null){
+                        listener.onFetchDataNoti(response.body(), response.message(), c, arr);}
+                }
+                @Override
+                public void onFailure(@NonNull Call<List<CryptoHeadlines>> call, @NonNull Throwable t) {
+                    listener.onErrorNoti("Request Failed!");
+                }
+            });
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 
     public CryptoRequestManager(Context context) {
         this.context = context;

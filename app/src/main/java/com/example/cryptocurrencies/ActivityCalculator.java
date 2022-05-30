@@ -81,13 +81,6 @@ public class ActivityCalculator extends AppCompatActivity {
                     TextView_PNL.setText(PNL);
                     TextView_ROE.setText(ROE);
                 }
-
-
-
-
-
-
-
             }
         };
         Calculat_btn.setOnClickListener(Calculat_lst);
